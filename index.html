@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+  <link rel="stylesheet" href="pages/index.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="logo" src="images/Logo.svg" alt="Лого сайта">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
+        <div class="profile__profile-info">
+          <p class="profile__name">Жак-Ив Кусто</p>
+          <p class="profile__about">Исследователь океана</p>
+          <button class="profile__button-edit">
+            <img src="images/Edit_Button.svg">
+          </button>
+        </div>
+        <button class="profile__button-add"></button>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img class="element__image" src="images/kirill-pershin-Karachaevsk.jpg" alt="Карачаевск">
+          <h2 class="element__title">Карачаевск</h2>
+          <button class="element__button-like"></button>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/kirill-pershin-Mountain_Elbrus.jpg" alt="Гора Эльбрус">
+          <h2 class="element__title">Гора Эльбрус</h2>
+          <button class="element__button-like"></button>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/kirill-pershin-Dombai.jpg" alt="Домбай">
+          <h2 class="element__title">Домбай</h2>
+          <button class="element__button-like"></button>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/kirill-pershin-Mountain_Elbrus.jpg" alt="Гора Эльбрус">
+          <h2 class="element__title">Гора Эльбрус</h2>
+          <button class="element__button-like"></button>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/kirill-pershin-Dombai.jpg" alt="Домбай">
+          <h2 class="element__title">Домбай</h2>
+          <button class="element__button-like"></button>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/kirill-pershin-Karachaevsk.jpg" alt="Карачаевск">
+          <h2 class="element__title">Карачаево-Черкессия</h2>
+          <button class="element__button-like"></button>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <div class="input">
+          <input type="text" placeholder="Жак-Ив Кусто" class="input__text input__text_type_name">
+          <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_about">
+          <button class="popup__submit-btn">
+            Сохранить
+          </button>
+        </div>
+        <button class="popup__close-btn">
+            <img src="images/Close_Button.svg" alt="Закрыть Окно ввода">
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="scripts/scripts.js"></script>
+</body>
