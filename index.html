@@ -13,13 +13,13 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
-        <div class="profile__profile-info">
-          <p class="profile__name">Жак-Ив Кусто</p>
-          <p class="profile__about">Исследователь океана</p>
-          <button class="profile__button-edit">
-            <img src="images/Edit_Button.svg">
-          </button>
+        <div class="profile__container">
+          <img class="profile__avatar" src="images/Avatar.jpg" alt="Аватар">
+          <div class="profile__profile-info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__job">Исследователь океана</p>
+            <button class="profile__button-edit"></button>
+          </div>
         </div>
         <button class="profile__button-add"></button>
       </section>
@@ -62,17 +62,12 @@
     <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <div class="input">
+        <form class="input">
           <input type="text" placeholder="Жак-Ив Кусто" class="input__text input__text_type_name">
-          <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_about">
-          <button class="popup__submit-btn">
-            Сохранить
-          </button>
-        </div>
-        <button class="popup__close-btn">
-            <img src="images/Close_Button.svg" alt="Закрыть Окно ввода">
-        </button>
-        </div>
+          <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_job">
+          <input type="submit" class="popup__submit-btn" value="Сохранить">
+        </form>
+        <button class="popup__close-btn"></button>
       </div>
     </div>
   </div>

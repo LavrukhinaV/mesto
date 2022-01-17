@@ -5,7 +5,18 @@
   width: 32px;
   height: 32px;
   background: none;
+  background-image: url(../../../images/Close_Button.svg);
   border: none;
   cursor: pointer;
   padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__close-btn {
+    width: 20px;
+    height: 20px;
+    top: -36px;
+    right: 0;
+    background-image: url(../../../images/Close_Button_Mobile.svg);
+  }
 }

@@ -7,7 +7,6 @@
   grid-template-areas:
     "name button-edit"
     "about about";
-  margin-right: 244px;
   align-items: baseline;
 }
 

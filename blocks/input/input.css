@@ -1,5 +1,11 @@
 .input {
   display: flex;
   flex-direction: column;
-  width: 358px;
+  min-width: 358px;
+}
+
+@media screen and (max-width: 767px) {
+  .input {
+    min-width: 238px;
+  }
 }
