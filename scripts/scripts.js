@@ -17,7 +17,8 @@ function closePopup() {
 OpenPopupButton.addEventListener('click', openPopup)
 ClosePopupButton.addEventListener('click', closePopup)
 
-function input() {
+function input(evt) {
+  evt.preventDefault();
   let input_name = document.querySelector('.input__text_type_name').value;
   document.querySelector('.profile__name').textContent= input_name;
   let input_job = document.querySelector('.input__text_type_job').value;
