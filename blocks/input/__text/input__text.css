@@ -1,10 +1,20 @@
 .input__text {
   border: 0;
-  border-bottom: 1px solid rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
   margin-bottom: 30px;
   padding: 0;
-  min-height: 27px;
   box-sizing: border-box;
   font-size: 14px;
   line-height: 17px;
+  padding-bottom: 9px;
+}
+
+.input__text:last-of-type {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 767px) {
+  .input__text:last-of-type {
+    margin-bottom: 45px;
+  }
 }

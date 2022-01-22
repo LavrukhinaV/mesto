@@ -8,6 +8,7 @@
   padding: 0;
   border: none;
   cursor: pointer;
+  transition: 2s;
 }
 
 @media screen and (max-width: 767px) {
@@ -16,4 +17,8 @@
     font-size: 14px;
     line-height: 17px;
   }
+}
+
+.popup__submit-btn:hover {
+  opacity: 80%;
 }
