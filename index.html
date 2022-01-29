@@ -24,42 +24,12 @@
         <button class="profile__button-add" type="button" aria-label="добавить изображение в галерею"></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img class="element__image" src="images/kirill-pershin-Karachaevsk.jpg" alt="Карачаевск">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button-like" type="button" aria-label="Лайк"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/kirill-pershin-Mountain_Elbrus.jpg" alt="Гора Эльбрус">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button-like" type="button" aria-label="Лайк"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/kirill-pershin-Dombai.jpg" alt="Домбай">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button-like" type="button" aria-label="Лайк"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/kirill-pershin-Mountain_Elbrus.jpg" alt="Гора Эльбрус">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button-like" type="button" aria-label="Лайк"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/kirill-pershin-Dombai.jpg" alt="Домбай">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button-like" type="button" aria-label="Лайк"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/kirill-pershin-Karachaevsk.jpg" alt="Карачаевск">
-          <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__button-like" type="button" aria-label="Лайк"></button>
-        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="input" name="input">
@@ -70,7 +40,26 @@
         <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
+    <div class="popup popup_add_element">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="input input-add-name" name="input">
+          <input type="text" placeholder="Название" class="input__text input__text_type_title" name="title">
+          <input type="text" placeholder="Ссылка на картинку" class="input__text input__text_type_link" name="link">
+          <button type="submit" class="input__submit-btn" aria-label="Создать">Создать</button>
+        </form>
+        <button class="popup__close-btn close-popup-add-element" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
   </div>
+  <template class="elements-template">
+    <article class="element">
+      <button class="element__button-delete"></button>
+      <img class="element__image">
+      <h2 class="element__title"></h2>
+      <button class="element__button-like"></button>
+    </article>
+  </template>
   <script src="scripts/scripts.js"></script>
 </body>
 </html>
