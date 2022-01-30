@@ -9,3 +9,7 @@
   top: 20px;
   right: 20px;
 }
+
+.element__button-delete:hover {
+  opacity: 60%;
+}
