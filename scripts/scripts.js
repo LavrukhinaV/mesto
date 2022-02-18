@@ -29,7 +29,7 @@ const buttonOpenPopupEditProfile = document.querySelector('.profile__button-edit
 const buttonOpenPopupAddElement = document.querySelector('.profile__button-add');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupAddElement = document.querySelector('.popup_add_element')
-const popupCard = document.querySelector('.popup_card');
+const popupCard = document.querySelector('.popup__card');
 const buttonClosePopupEditProfile = document.querySelector('.popup__close-btn_edit-profile');
 const buttonClosePopupAddElement = document.querySelector('.popup__close-btn_add-element');
 const buttonClosePopupCard = document.querySelector('.popup__close-btn_card');
@@ -45,6 +45,7 @@ const elementsList = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('.elements-template').content;
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
+const popupOverlay = Array.from(document.querySelectorAll('.popup'))
 
 
 // функция создания карточки и добавления слушателей
@@ -88,11 +89,34 @@ function likeCard(event) {
 // Функция открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+
+  document.addEventListener('keydown', function(event){
+    if(event.key === "Escape"){
+      closePopup(popup)
+    }
+  });
+
+  enableValidation({
+    formSelector: '.input',
+    inputSelector: '.input__text',
+    submitButtonSelector: '.input__submit-btn',
+    actualForm: '.popup_opened',
+    inactiveButtonClass: 'input__submit-btn_disabled',
+    inputErrorClass: 'input__text_type_error',
+}); 
 }
 
 // Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  
+}
+
+//Функция закрытия попапа нажатием на оверлей
+function closePopupOnOverlay(evt) {
+  if(evt.target === evt.currentTarget) {
+    closePopup(evt.target)
+   }
 }
 
 //Функция установки значений в попап открытия картинки
@@ -126,10 +150,15 @@ function submitCardForm(evt) {
 }
 
 // Функция отправки формы изменения профиля
-function submitEditProfileForm(evt) {
-  evt.preventDefault();
+function submitEditProfileForm(event) {
+  submitForm(event);
   editProfile();
   closePopup(popupEditProfile);
+}
+
+// Функция отправки формы 
+function submitForm(event) {
+  event.preventDefault();
 }
 
 buttonOpenPopupEditProfile.addEventListener('click', function(){
@@ -145,7 +174,12 @@ buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
 buttonInputEditProfile.addEventListener('submit', submitEditProfileForm);
 buttonInputAddElement.addEventListener('submit', submitCardForm);
 
+popupOverlay.forEach((e)=>e.addEventListener('click', closePopupOnOverlay));
+
+
 render();
+
+
 
 
 
