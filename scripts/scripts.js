@@ -45,7 +45,8 @@ const elementsList = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('.elements-template').content;
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
-const popupOverlay = Array.from(document.querySelectorAll('.popup'))
+const popupOverlay = Array.from(document.querySelectorAll('.popup'));
+const buttonSubmitAddCardForm = document.querySelector('.input__submit-btn_type_add-name');
 
 
 // функция создания карточки и добавления слушателей
@@ -89,13 +90,13 @@ function likeCard(event) {
 // Функция открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (event) => {closePopupOnEsc(event, popup)});
+  document.addEventListener('keydown', closeByEscape);
 }
 
 // Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupOnEsc)
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 //Функция закрытия попапа нажатием на оверлей
@@ -106,9 +107,10 @@ function closePopupOnOverlay(evt) {
 }
 
 //Функция закрытия попапа нажатием на Esc
-function closePopupOnEsc (event, popup) {
+function closeByEscape (event) {
   if(event.key === "Escape"){
-    closePopup(popup)
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
 }
 
@@ -154,32 +156,23 @@ function submitForm(event) {
   event.preventDefault();
 }
 
+//Функция установки неактивных значений для кнопки
+function disenableButton(button) {
+  button.setAttribute('disabled', '');
+  button.classList.add('input__submit-btn_disabled');
+}
 
 buttonOpenPopupEditProfile.addEventListener('click', function(){
   setValue();
   openPopup(popupEditProfile);
-  enableValidation({
-    formSelector: '.input',
-    inputSelector: '.input__text',
-    submitButtonSelector: '.input__submit-btn',
-    actualForm: '.popup_opened',
-    inactiveButtonClass: 'input__submit-btn_disabled',
-    inputErrorClass: 'input__text_type_error',
-  }); 
 });
 
 buttonClosePopupEditProfile.addEventListener('click',() => closePopup(popupEditProfile));
 
 buttonOpenPopupAddElement.addEventListener('click',() => {
-  openPopup(popupAddElement)
-  enableValidation({
-    formSelector: '.input',
-    inputSelector: '.input__text',
-    submitButtonSelector: '.input__submit-btn',
-    actualForm: '.popup_opened',
-    inactiveButtonClass: 'input__submit-btn_disabled',
-    inputErrorClass: 'input__text_type_error',
-  })});
+  openPopup(popupAddElement);
+  disenableButton(buttonSubmitAddCardForm);
+});
 
 buttonClosePopupAddElement.addEventListener('click', () => closePopup(popupAddElement));
 buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
@@ -189,6 +182,7 @@ popupOverlay.forEach((e)=>e.addEventListener('click', closePopupOnOverlay));
 
 
 render();
+
 
 
 

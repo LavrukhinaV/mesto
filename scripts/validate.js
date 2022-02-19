@@ -36,17 +36,26 @@ const checkButtonValidity = ({ inactiveButtonClass }, form, button) => {
   }
 }
 
-function enableValidation({ formSelector, inputSelector, submitButtonSelector, actualForm, ...rest }) {
+function enableValidation({ formSelector, inputSelector, submitButtonSelector, ...rest }) {
 
-  const currentForm = document.querySelector(actualForm);
-  const form = currentForm.querySelector(formSelector);
-  const inputs = form.querySelectorAll(inputSelector);
-  const button = form.querySelector(submitButtonSelector);
-  
-  inputs.forEach(input => {
-    input.addEventListener('input', (event) => {
-      checkInputValidity(rest, form, input);
-      checkButtonValidity(rest, form, button);
+  const form = document.querySelectorAll(formSelector);
+
+  form.forEach((form) => {
+    const inputs = form.querySelectorAll(inputSelector);
+    const button = form.querySelector(submitButtonSelector);
+    inputs.forEach(input => {
+      input.addEventListener('input', (event) => {
+        checkInputValidity(rest, form, input);
+        checkButtonValidity(rest, form, button);
+      });
     });
-  });
-}
+ }
+)}
+
+enableValidation({
+  formSelector: '.input',
+  inputSelector: '.input__text',
+  submitButtonSelector: '.input__submit-btn',
+  inactiveButtonClass: 'input__submit-btn_disabled',
+  inputErrorClass: 'input__text_type_error',
+}); 
