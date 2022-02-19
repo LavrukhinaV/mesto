@@ -89,34 +89,28 @@ function likeCard(event) {
 // Функция открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-
-  document.addEventListener('keydown', function(event){
-    if(event.key === "Escape"){
-      closePopup(popup)
-    }
-  });
-
-  enableValidation({
-    formSelector: '.input',
-    inputSelector: '.input__text',
-    submitButtonSelector: '.input__submit-btn',
-    actualForm: '.popup_opened',
-    inactiveButtonClass: 'input__submit-btn_disabled',
-    inputErrorClass: 'input__text_type_error',
-}); 
+  document.addEventListener('keydown', (event) => {closePopupOnEsc(event, popup)});
 }
 
 // Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  
+  document.removeEventListener('keydown', closePopupOnEsc)
 }
 
 //Функция закрытия попапа нажатием на оверлей
 function closePopupOnOverlay(evt) {
   if(evt.target === evt.currentTarget) {
-    closePopup(evt.target)
+    closePopup(evt.target);
    }
+}
+
+//Функция закрытия попапа нажатием на Esc
+function closePopupOnEsc (event, popup) {
+  if(event.key === "Escape"){
+    console.log("esc")
+        closePopup(popup)
+      }
 }
 
 //Функция установки значений в попап открытия картинки
@@ -161,19 +155,37 @@ function submitForm(event) {
   event.preventDefault();
 }
 
+
 buttonOpenPopupEditProfile.addEventListener('click', function(){
   setValue();
   openPopup(popupEditProfile);
+  enableValidation({
+    formSelector: '.input',
+    inputSelector: '.input__text',
+    submitButtonSelector: '.input__submit-btn',
+    actualForm: '.popup_opened',
+    inactiveButtonClass: 'input__submit-btn_disabled',
+    inputErrorClass: 'input__text_type_error',
+  }); 
 });
 
 buttonClosePopupEditProfile.addEventListener('click',() => closePopup(popupEditProfile));
-buttonOpenPopupAddElement.addEventListener('click',() => openPopup(popupAddElement));
+
+buttonOpenPopupAddElement.addEventListener('click',() => {
+  openPopup(popupAddElement)
+  enableValidation({
+    formSelector: '.input',
+    inputSelector: '.input__text',
+    submitButtonSelector: '.input__submit-btn',
+    actualForm: '.popup_opened',
+    inactiveButtonClass: 'input__submit-btn_disabled',
+    inputErrorClass: 'input__text_type_error',
+  })});
+
 buttonClosePopupAddElement.addEventListener('click', () => closePopup(popupAddElement));
 buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
-
 buttonInputEditProfile.addEventListener('submit', submitEditProfileForm);
 buttonInputAddElement.addEventListener('submit', submitCardForm);
-
 popupOverlay.forEach((e)=>e.addEventListener('click', closePopupOnOverlay));
 
 
