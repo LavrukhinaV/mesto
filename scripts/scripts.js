@@ -28,8 +28,8 @@ const initialCards = [
 const buttonOpenPopupEditProfile = document.querySelector('.profile__button-edit');
 const buttonOpenPopupAddElement = document.querySelector('.profile__button-add');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
-const popupAddElement = document.querySelector('.popup_add_element')
-const popupCard = document.querySelector('.popup__card');
+const popupAddElement = document.querySelector('.popup_add-element')
+const popupCard = document.querySelector('.popup_card');
 const buttonClosePopupEditProfile = document.querySelector('.popup__close-btn_edit-profile');
 const buttonClosePopupAddElement = document.querySelector('.popup__close-btn_add-element');
 const buttonClosePopupCard = document.querySelector('.popup__close-btn_card');
@@ -108,9 +108,8 @@ function closePopupOnOverlay(evt) {
 //Функция закрытия попапа нажатием на Esc
 function closePopupOnEsc (event, popup) {
   if(event.key === "Escape"){
-    console.log("esc")
-        closePopup(popup)
-      }
+    closePopup(popup)
+  }
 }
 
 //Функция установки значений в попап открытия картинки
