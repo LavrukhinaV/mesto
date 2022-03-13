@@ -6,6 +6,6 @@
 
 @media screen and (max-width: 767px) {
   .input {
-    min-width: 238px;
+    width: 238px;
   }
 }
