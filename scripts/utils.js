@@ -4,6 +4,12 @@ export function openPopup(popup) {
   document.addEventListener('keydown', closeByEscape);
 };
 
+// Функция закрытия попапа
+export function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
+}
+
 //Функция закрытия попапа нажатием на Esc
 export function closeByEscape (event) {
   if(event.key === "Escape"){

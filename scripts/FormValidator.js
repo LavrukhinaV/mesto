@@ -30,26 +30,32 @@ export class FormValidator {
   }
 
   //Функция сделать кнопку не активной
-  _disableButton (button) {
-    button.setAttribute('disabled', '');
-    button.classList.add(this._settings.inactiveButtonClass);
+  _disableButton () {
+    this._button.setAttribute('disabled', '');
+    this._button.classList.add(this._settings.inactiveButtonClass);
+  }
+
+  _hasInvalidInput() {
+    return this._inputs.some((input) => {
+      return !input.validity.valid;
+    });
   }
 
   //Функция проверки кнопки на валидность
-  _checkButtonValidity (input, button) {
-    if(input.validity.valid) {
-      button.removeAttribute('disabled');
-      button.classList.remove(this._settings.inactiveButtonClass);
+  checkButtonValidity () {
+    if(this._hasInvalidInput()) {
+      this._disableButton()
     } else {
-      this._disableButton(this._button)
+      this._button.removeAttribute('disabled');
+      this._button.classList.remove(this._settings.inactiveButtonClass);
     }
   }
 
-  enableValidation() {
+    enableValidation() {
      this._inputs.forEach(input => {
         input.addEventListener('input', () => {
           this._checkInputValidity(input);
-          this._checkButtonValidity(input, this._button);
+          this.checkButtonValidity(input);
         });
       });
    }
@@ -59,7 +65,7 @@ export class FormValidator {
     this._inputs.forEach((input) => {
       this._setInputValid ((this._form.querySelector(`#error-${input.id}`)), input)
     });
-    this._disableButton(this._button)
+    this._disableButton();
    }
 }
 

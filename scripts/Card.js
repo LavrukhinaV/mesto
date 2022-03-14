@@ -1,6 +1,3 @@
-import { popupImage, popupCaption, popupCard } from './constants.js';
-import { openPopup } from './utils.js';
-
 export class Card {
   constructor(data, cardTemplateSelector, handleCardClick) {
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
@@ -34,7 +31,7 @@ export class Card {
   _fillCard() {
     this._cardElement.querySelector('.element__title').textContent = this._name;
     this._cardImage.src = this._link;
-    this._cardElement.querySelector('.element__image').alt = this._name;
+    this._cardImage.alt = this._name;
   }
 
   // функция создания карточки и добавления слушателей
