@@ -14,8 +14,7 @@ export class UserInfo extends Popup {
       job: this._userProfessionSelector
     };
     
-    this._popupSelector.querySelector('.input__text_type_name').value = userData.name.textContent;
-    this._popupSelector.querySelector('.input__text_type_job').value = userData.job.textContent;
+    return userData;
   }
 
   //метод, принимает новые данные пользователя и добавляет их на страницу.
