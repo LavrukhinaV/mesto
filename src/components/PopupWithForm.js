@@ -1,17 +1,18 @@
 import { Popup } from './Popup.js'
 
 export class PopupWithForm extends Popup{
-  constructor({popupSelector, submitCardForm}) {
+  constructor(popupSelector, submitCardForm) {
     super(popupSelector);
     this._submitCardForm = submitCardForm;
+    this._inputList = Array.from(this._popup.querySelectorAll('.input__text'));
+    this._form = this._popup.querySelector('.input')
   }
 
   _getInputValues() {
-    const inputsList = Array.from(this._popupSelector.querySelectorAll('.input__text'));
-  
+    
     this._formValues = {};
 
-    inputsList.forEach(input => {
+    this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
     });
 
@@ -21,9 +22,14 @@ export class PopupWithForm extends Popup{
 
   setEventListeners(){
     super.setEventListeners()
-    this._popupSelector.addEventListener('submit', (event) => {
+    this._popup.addEventListener('submit', (event) => {
       event.preventDefault();
       this._submitCardForm(this._getInputValues());
   })
+  }
+
+  close() {
+    super.close()
+    this._form.reset()
   }
 }
