@@ -10,7 +10,7 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 
 import './index.css';
 
-const formValidators = {}
+const formValidators = {};
 
 // Включение валидации
 const enableValidation = (settings) => {
@@ -32,7 +32,7 @@ popupWithImage.setEventListeners();
 
 const cardsList = new Section({
   items: initialCards,
-  renderer: handleCardFormSubmit,
+  renderer: prependItem,
 },
 elementsList);
 
@@ -44,12 +44,15 @@ const popupRedactProfile = new UserInfo(
 const popupEditProfileSubmit = new PopupWithForm(
   popupEditProfile, (formData) => {
     popupRedactProfile.setUserInfo(formData);
-    popupEditProfileSubmit.close()
+    popupEditProfileSubmit.close();
   }
 );
 
-const popupAddElementSubmit = new PopupWithForm(popupAddElement, handleCardFormSubmit
-);
+popupEditProfileSubmit.setEventListeners();
+
+const popupAddElementSubmit = new PopupWithForm(popupAddElement, handleCardFormSubmit);
+
+popupAddElementSubmit.setEventListeners();
 
 function addCard(element){
   const cardNew = new Card
@@ -59,9 +62,13 @@ function addCard(element){
   return cardNew.createElement();
 }; 
 
-function handleCardFormSubmit(data){
+function prependItem(data) {
   const card = addCard(data);
   cardsList.addItem(card);
+}
+
+function handleCardFormSubmit(data){
+  prependItem(data);
   popupAddElementSubmit.close();
 }
 
@@ -79,14 +86,11 @@ buttonOpenPopupEditProfile.addEventListener('click', function(){
 });
 
 buttonOpenPopupAddElement.addEventListener('click',() => {
-  popupAddElementSubmit.open()
+  popupAddElementSubmit.open();
   formValidators['add-card'].resetErrors();
 });
 
-buttonInputEditProfile.addEventListener('submit', popupEditProfileSubmit.setEventListeners());
-buttonInputAddElement.addEventListener('submit', popupAddElementSubmit.setEventListeners());
-
-cardsList.renderer()
+cardsList.renderer();
 
 
 
