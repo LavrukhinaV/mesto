@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+<script defer src="index.js"></script><link href="main.css" rel="stylesheet"></head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="logo" src="03b78ada3425e9132ff3.svg" alt="Лого сайта">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__container">
+          <img class="profile__avatar" src="5170b4d25f3236a3a541.jpg" alt="Аватар">
+          <div class="profile__profile-info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__job">Исследователь океана</p>
+            <button class="profile__button-edit" type="button" aria-label="изменить информацию в профиле"></button>
+          </div>
+        </div>
+        <button class="profile__button-add" type="button" aria-label="добавить изображение в галерею"></button>
+      </section>
+      <section class="elements">
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup popup_edit-profile">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="input input_edit-profile" name="profile-form" novalidate>
+          <label class="input__field">
+            <input id="name" type="text" required placeholder="Ваше имя" class="input__text input__text_type_name" name="name" minlength="2" maxlength="40">
+            <span id="error-name" class="input__span"></span>
+          </label>
+          <label class="input__field">
+            <input id="job" type="text" required placeholder="Ваш род деятельности" class="input__text input__text_type_job" name="profession" minlength="2" maxlength="200">
+            <span id="error-job" class="input__span"></span>
+          </label>
+          <button type="submit" disabled class="input__submit-btn" aria-label="Сохранить">Сохранить</button>
+        </form>
+        <button class="popup__close-btn popup__close-btn_edit-profile" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+    <div class="popup popup_add-element">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="input input_add-name" name="add-card" novalidate>
+          <label class="input__field">
+            <input id="title" type="text" required placeholder="Название" class="input__text input__text_type_title" name="name" minlength="2" maxlength="30">
+            <span id="error-title" class="input__span"></span>
+          </label>
+          <label class="input__field">
+            <input id="link" type="url" required placeholder="Ссылка на картинку" class="input__text input__text_type_link" name="link">
+            <span id="error-link" class="input__span"></span>
+          </label>
+          <button type="submit" class="input__submit-btn input__submit-btn_type_add-name" aria-label="Создать">Создать</button>
+        </form>
+        <button class="popup__close-btn popup__close-btn_add-element" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+    <div class="popup popup_card">
+      <div class="popup__block">
+        <img class="popup__image" alt="Фотография места">
+        <h2 class="popup__caption"></h2>
+        <button class="popup__close-btn popup__close-btn_card" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+  </div>
+  <template class="elements-template">
+    <article class="element">
+      <button class="element__button-delete"></button>
+      <img class="element__image" alt="Фотография места">
+      <h2 class="element__title"></h2>
+      <button class="element__button-like"></button>
+    </article>
+  </template>
+</body>
+</html>
