@@ -78,6 +78,10 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__button-like/element__button-like.css ***!
   \***********************************************************************************************************************************************************************************/
 .element__button-like{background-color:#fff;background-image:url(87ed371465c7a6a1cd01.svg);border:none;cursor:pointer;height:19px;margin-right:20px;padding:0;transition:1s;width:22px}.element__button-like:hover{opacity:50%}.element__button-like_active{background-image:url(fe17a515669479b1e649.svg)}
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__like-count/element__like-count.css ***!
+  \*********************************************************************************************************************************************************************************/
+
 /*!***************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__button-delete/element__button-delete.css ***!
   \***************************************************************************************************************************************************************************************/
