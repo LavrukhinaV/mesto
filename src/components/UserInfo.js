@@ -1,9 +1,9 @@
 import { Popup } from './Popup.js'
 export class UserInfo{
-  constructor(userName, userProfession) {
+  constructor(userName, userProfession, userAvatar) {
     this._userName = userName;
     this._userProfession = userProfession;
-
+    this._userAvatar = userAvatar
   }
 
   //метод, возвращает объект с данными пользователя. 
@@ -11,15 +11,17 @@ export class UserInfo{
   getUserInfo() {
     const userData = {
       name: this._userName.textContent,
-      job: this._userProfession.textContent
+      job: this._userProfession.textContent,
+      avatar: this._userAvatar.src
     };
     
     return userData;
   }
 
   //метод, принимает новые данные пользователя и добавляет их на страницу.
-  setUserInfo(formData) {
-    this._userName.textContent = formData.name;
-    this._userProfession.textContent = formData.profession;
+  setUserInfo(name, about, avatar) {
+    this._userName.textContent = name;
+    this._userProfession.textContent = about;
+    this._userAvatar.src = avatar
   }
 }

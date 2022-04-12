@@ -14,15 +14,16 @@ module.exports = {
   mode: 'development',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist')},
+    directory: path.join(__dirname, 'dist')},
     port: 8080,
-    open: true
+    open: true,
+    watchFiles: ['src/**/*']
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
   ],
   module: {
