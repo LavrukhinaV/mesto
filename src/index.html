@@ -13,7 +13,9 @@
     <main class="content">
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__avatar" alt="Аватар">
+          <div class="profile__avatar-container">
+            <img class="profile__avatar" alt="Аватар">
+          </div>
           <div class="profile__profile-info">
             <h1 class="profile__name"></h1>
             <p class="profile__job"></p>
@@ -74,7 +76,7 @@
     <div class="popup popup_edit-avatar">
       <div class="popup__container">
         <h2 class="popup__title">Обновить аватар</h2>
-        <form class="input input_add-name" novalidate>
+        <form class="input input_add-name" novalidate name="edit-avatar">
           <label class="input__field">
             <input id="avatar-link" type="url" required placeholder="Ссылка на картинку" class="input__text input__text_type_avatar" name="link">
             <span id="error-avatar-link" class="input__span"></span>

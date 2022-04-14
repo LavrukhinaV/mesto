@@ -14,6 +14,7 @@ export class Card {
     this._deleteButton = this._cardElement.querySelector('.element__button-delete');
     this._likeButton = this._cardElement.querySelector('.element__button-like');
     this._cardImage = this._cardElement.querySelector('.element__image');
+    this._likeCountElement = this._cardElement.querySelector('.element__like-count');
   }
   
   // Функция удаления карточки
@@ -37,9 +38,8 @@ export class Card {
 
   setLikes(newLikes) {
     this._likes = newLikes;
-    const likeCountElement = this._cardElement.querySelector('.element__like-count');
     
-    likeCountElement.textContent = this._likes.length;
+    this._likeCountElement.textContent = this._likes.length;
 
     if(this.checkLike()) {
       this._setLikeCard()

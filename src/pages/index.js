@@ -13,20 +13,13 @@ import './index.css';
 
 let userId
 
-api.getProfile()
-  .then(res => {
-    popupRedactProfile.setUserInfo(res.name, res.about, res.avatar);
-    userId = res._id;
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userId = userData._id;
+    popupRedactProfile.setUserInfo(userData.name, userData.about, userData.avatar);
+    cardsList.renderer(cards)
   })
-
-api.getInitialCards()
-  .then(cardList => {
-    cardList.forEach(data => {
-      const card = addCard(data, userId)
-      cardsList.addItemAppendElement(card)
-    })
-  })
- 
+  .catch(err => console.log(`Ошибка: ${err}`));
 
 const formValidators = {};
 
@@ -49,9 +42,10 @@ const popupWithImage = new PopupWithImage(popupCard);
 popupWithImage.setEventListeners();
 
 const cardsList = new Section({
-  items: [],
-  renderer: prependItem,
-},
+  renderer: (item) => {
+    const card = addCard(item)
+    cardsList.addItemAppendElement(card)
+  }},
 elementsList);
 
 const popupRedactProfile = new UserInfo(
@@ -87,6 +81,7 @@ function addCard(element){
           cardNew.deleteCard();
           popupConfirm.close()
         })
+        .catch(err => console.log(`Ошибка: ${err}`))
     }) 
   },
   (id) => {
@@ -95,11 +90,13 @@ function addCard(element){
       .then(res => {
         cardNew.setLikes(res.likes)
       })
+      .catch(err => console.log(`Ошибка: ${err}`))
     } else {
       api.addLike(id)
       .then(res => {
         cardNew.setLikes(res.likes)
       })
+      .catch(err => console.log(`Ошибка: ${err}`))
     }
   });
   return cardNew.createElement();
@@ -110,6 +107,10 @@ function prependItem(data) {
   .then(res => {
     const card = addCard(res)
     cardsList.addItemPrependElement(card);
+  })
+  .catch(err => console.log(`Ошибка: ${err}`))
+  .finally(() => {
+    popupAddElement.renderLoading(false);
   })
 }
 
@@ -125,8 +126,14 @@ function handleProfileFormSubmit(data) {
   api.editProfile (newInfo)
     .then((data) => {
       popupRedactProfile.setUserInfo(data.name, data.about, data.avatar);
+    })
+    .then(() => {
       popupEditProfile.close();
-    });
+    })
+    .catch(err => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      popupEditProfile.renderLoading(false);
+    })
 }
 
 function handleAvatarFormSubmit(data) {
@@ -134,8 +141,14 @@ function handleAvatarFormSubmit(data) {
   api.editAvatar ({avatar: data['link']})
     .then((data) => {
       popupRedactProfile.setUserInfo(data.name, data.about, data.avatar)
+    })
+    .then(() => {
       popupAvatar.close();
-    });
+    })
+    .catch(err => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      popupAvatar.renderLoading(false);
+    })
 }
 
 function setValueInPopupEditProfile(){
@@ -148,7 +161,6 @@ buttonOpenPopupEditProfile.addEventListener('click', function(){
   formValidators['profile-form'].resetErrors();
   popupEditProfile.open();
   setValueInPopupEditProfile();
-  formValidators['profile-form'].checkButtonValidity();
 });
 
 buttonOpenPopupAddElement.addEventListener('click',() => {
@@ -157,6 +169,7 @@ buttonOpenPopupAddElement.addEventListener('click',() => {
 });
 
 avatar.addEventListener('click', () => {
+  formValidators['edit-avatar'].resetErrors();
   popupAvatar.open();
 })
 
