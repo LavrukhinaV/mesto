@@ -4,7 +4,7 @@ class Api {
     this._baseUrl = baseUrl
   }
 
-  _makeRequest(res) {
+  _checkReponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -15,14 +15,14 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 
   editProfile(newInfo) {
@@ -31,7 +31,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(newInfo)
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 
   editAvatar(avatar) {
@@ -40,7 +40,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(avatar)
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 
   addCard(data) {
@@ -49,7 +49,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 
   deleteCard(id) {
@@ -57,7 +57,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 
   deleteLike(id) {
@@ -65,7 +65,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 
   addLike(id) {
@@ -73,7 +73,7 @@ class Api {
       method: "PUT",
       headers: this._headers,
     })
-    .then(this._makeRequest)
+    .then(this._checkReponse)
   }
 }
 

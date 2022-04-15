@@ -17,7 +17,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
   .then(([userData, cards]) => {
     userId = userData._id;
     popupRedactProfile.setUserInfo(userData.name, userData.about, userData.avatar);
-    cardsList.renderer(cards)
+    cardsList.renderItems(cards)
   })
   .catch(err => console.log(`Ошибка: ${err}`));
 
@@ -108,6 +108,9 @@ function prependItem(data) {
     const card = addCard(res)
     cardsList.addItemPrependElement(card);
   })
+  .then(() => {
+    popupAddElement.close();
+  })
   .catch(err => console.log(`Ошибка: ${err}`))
   .finally(() => {
     popupAddElement.renderLoading(false);
@@ -117,7 +120,6 @@ function prependItem(data) {
 function handleCardFormSubmit(data){
   popupAddElement.renderLoading(true);
   prependItem(data);
-  popupAddElement.close();
 }
 
 function handleProfileFormSubmit(data) {
