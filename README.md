@@ -10,7 +10,7 @@
 
 **Github-pages**
 
-* [https://lavrukhinav.github.io/mesto/](https://lavrukhinav.github.io/mesto/
+* [https://lavrukhinav.github.io/mesto/](https://lavrukhinav.github.io/mesto/)
 
 
 ### __Планы по доработке проекта:__
